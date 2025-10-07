@@ -1,0 +1,11 @@
+CREATE OR REPLACE VIEW dept10_only AS
+SELECT * FROM employees WHERE dept_id = 10 WITH CHECK OPTION;
+
+BEGIN
+    INSERT INTO dept10_only VALUES (4, 'David', 10, 65000);
+    INSERT INTO dept10_only VALUES (5, 'Eve', 20, 60000); 
+    EXCEPTION
+        WHEN OTHERS THEN
+            DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
+END;
+/
